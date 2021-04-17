@@ -4,15 +4,17 @@ import itemData from "../data/items";
 
 function App() {
   const [items, setItems] = useState(itemData);
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
-  // this data will be passed down to the ShoppingList as a prop
-  console.log(items);
+  const toggleDarkMode = () => {
+    setIsDarkMode(isDarkMode => !isDarkMode)
+  }
 
   return (
-    <div className={"App " + (false ? "dark" : "light")}>
+    <div className={"App " + (isDarkMode ? "dark" : "light")}>
       <header>
         <h2>Shopster</h2>
-        <button>Dark Mode</button>
+        <button onClick={toggleDarkMode} >{isDarkMode ? "Dark" : "Light"}</button>
       </header>
       <ShoppingList items={items} />
     </div>
